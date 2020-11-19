@@ -12,7 +12,7 @@ import br.com.isilanguage.parser.IsiLangParser;
  * Arquivo fonte: extensao .isi
  * 
  */
-public class MainClass {
+public class Main {
 	public static void main(String[] args) {
 		try {
 			IsiLangLexer lexer;
