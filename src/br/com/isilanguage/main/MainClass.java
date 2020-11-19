@@ -1,4 +1,4 @@
-package br.com.isilanguage;
+package br.com.isilanguage.main;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -12,7 +12,7 @@ import br.com.isilanguage.parser.IsiLangParser;
  * Arquivo fonte: extensao .isi
  * 
  */
-public class Main {
+public class MainClass {
 	public static void main(String[] args) {
 		try {
 			IsiLangLexer lexer;
