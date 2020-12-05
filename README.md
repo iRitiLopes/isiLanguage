@@ -18,3 +18,30 @@ This is a repository for the Project of UFABC Compilers discipline
 
 # Vídeo de apresentação
 TODO
+
+
+## Exemplo da linguagem
+```
+programa
+  numero a, b;
+  texto  c, d;
+
+  leia(a);
+  leia(b);
+  
+  a = 1 + 2 * 3 / b ;
+  
+  escreva(a);
+  escreva(b);
+
+  a = 1;
+  b = 1.43;
+
+  numero asd;
+  leia(asd);
+
+  asd = 5.123;
+
+
+fimprog;
+```
