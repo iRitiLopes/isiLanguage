@@ -1,4 +1,7 @@
 programa
+  numero a, b;
+  texto  c, d;
+
   leia(a);
   leia(b);
   
@@ -6,7 +9,14 @@ programa
   
   escreva(a);
   escreva(b);
-  
-  
+
+  a = 1;
+  b = 1.43;
+
+  numero asd;
+  leia(asd);
+
+  asd = 5.123;
+
 
 fimprog;
