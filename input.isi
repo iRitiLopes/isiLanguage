@@ -2,7 +2,6 @@ programa
   numero a, b, f;
   texto  c, d;
 
-  leia(a);
   leia(b);
 
   a = 1 + 2 * 3 / b ;

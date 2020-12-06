@@ -625,7 +625,7 @@ public class IsiLangParser extends Parser {
 			expr();
 			setState(85);
 			match(SC);
-			  
+			 initializeVar(_exprID); 
 			}
 		}
 		catch (RecognitionException re) {

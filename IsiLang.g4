@@ -117,7 +117,7 @@ cmdattrib	:  ID {
                }
                ATTR { _exprContent = ""; }
                expr
-               SC {  }
+               SC { initializeVar(_exprID); }
 			;
 
 cmdif  :  'se' AP
