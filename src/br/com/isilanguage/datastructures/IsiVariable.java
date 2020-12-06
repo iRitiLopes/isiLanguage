@@ -7,6 +7,7 @@ public class IsiVariable extends IsiSymbol {
 
     private int type;
     private String value;
+    private boolean initialized = false;
 
     public IsiVariable(String name, int type, String value) {
         super(name);
@@ -31,12 +32,20 @@ public class IsiVariable extends IsiSymbol {
         this.value = value;
     }
 
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    public void setInitialized(boolean initialized) {
+        this.initialized = initialized;
+    }
+
     @Override
     public String toString() {
         return "IsiVariable{" +
                 "type=" + type +
                 ", value='" + value + '\'' +
-                ", name='" + name + '\'' +
+                ", initialized=" + initialized +
                 '}';
     }
 }

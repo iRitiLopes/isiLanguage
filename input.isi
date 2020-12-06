@@ -1,22 +1,19 @@
 programa
-  numero a, b;
+  numero a, b, f;
   texto  c, d;
 
   leia(a);
   leia(b);
-  
-  a = 1 + 2 * 3 / b ;
-  
-  escreva(a);
-  escreva(b);
 
+  a = 1 + 2 * 3 / b ;
+  se(a > g){
+    escreva(a);
+  }senao{
+    escreva(b);
+  }
+
+  escreva(f);
   a = 1;
   b = 1.43;
-
-  numero asd;
-  leia(asd);
-
-  asd = 5.123;
-
 
 fimprog;

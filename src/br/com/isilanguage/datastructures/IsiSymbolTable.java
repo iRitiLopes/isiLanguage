@@ -4,13 +4,13 @@ package br.com.isilanguage.datastructures;
 
 public class IsiSymbolTable {
 
-    private HashMap<String, IsiSymbol> map;
+    private HashMap<String, IsiVariable> map;
 
     public IsiSymbolTable(){
-        map = new HashMap<String, IsiSymbol>();
+        map = new HashMap<String, IsiVariable>();
     }
 
-    public void add(IsiSymbol symbol){
+    public void add(IsiVariable symbol){
         map.put(symbol.getName(), symbol);
     }
 
@@ -18,8 +18,12 @@ public class IsiSymbolTable {
         return map.get(symbolName) != null;
     }
 
-    public IsiSymbol get(String symbolName){
+    public IsiVariable get(String symbolName){
         return map.get(symbolName);
+    }
+
+    public void replace(String id, IsiVariable newSymbol){
+        map.replace(id, newSymbol);
     }
 
 }

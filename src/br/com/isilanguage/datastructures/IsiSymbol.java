@@ -11,7 +11,15 @@ public abstract class IsiSymbol {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "IsiSymbol{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }
