@@ -78,6 +78,7 @@ cmd		:  cmdleitura
  		|  cmdescrita
  		|  cmdattrib
  		|  cmdif
+ 		|  cmdwhile
 		;
 		
 cmdleitura	: 'leia'
@@ -151,6 +152,9 @@ cmdif  :  'se' AP
                    FCH { }
                )?
       ;
+
+cmdwhile    : 'while' AP termo OPREL termo FP ACH (cmd)+ FCH
+            ;
 			
 expr		:  termo
                (

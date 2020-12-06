@@ -12,6 +12,10 @@ programa
     escreva(b);
   }
 
+  while(a > 2){
+    escreva(a);
+  }
+
   a = 1;
   b = 1.43;
 
