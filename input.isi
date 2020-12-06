@@ -6,13 +6,12 @@ programa
   leia(b);
 
   a = 1 + 2 * 3 / b ;
-  se(a > g){
+  se(a > 2){
     escreva(a);
   }senao{
     escreva(b);
   }
 
-  escreva(f);
   a = 1;
   b = 1.43;
 

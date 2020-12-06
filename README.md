@@ -37,9 +37,6 @@ programa
   a = 1;
   b = 1.43;
 
-  numero asd;
-  leia(asd);
-
   asd = 5.123;
 
 
