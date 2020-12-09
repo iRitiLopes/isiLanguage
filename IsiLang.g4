@@ -5,7 +5,15 @@ grammar IsiLang;
     import br.com.isilanguage.datastructures.IsiSymbolTable;
     import br.com.isilanguage.datastructures.IsiVariable;
     import br.com.isilanguage.datastructures.IsiSymbol;
+
+    import br.com.isilanguage.ast.IsiProgram;
+    import br.com.isilanguage.ast.AbstractCommand;
+
+    import br.com.isilanguage.ast.CommandAttribution;
+    import br.com.isilanguage.ast.CommandRead;
+
     import java.util.ArrayList;
+    import java.util.Stack;
 }
 @members {
     private int _type;
@@ -18,6 +26,10 @@ grammar IsiLang;
     private String _writeID;
     private String _exprContent;
     private String _exprID;
+
+    private IsiProgram program = new IsiProgram();
+    private ArrayList<AbstractCommand> curThread;
+    private Stack<ArrayList<AbstractCommand>> stack = new Stack<ArrayList<AbstractCommand>>();
 
     public boolean isIDDeclared(String id){
         return symbolTable.exists(id);
@@ -36,11 +48,19 @@ grammar IsiLang;
             return symbolTable.get(id).isInitialized();
         }
         return false;
-     }
+    }
+
+    public void generateJavaCode(){
+        program.generateTarget();
+    }
 
 }
 
-prog	: 'programa'  decl* bloco  'fimprog;'
+prog	: 'programa'  decl* bloco  'fimprog' SC
+          {
+              program.setVariable(symbolTable);
+              program.setCommands(stack.pop());
+          }
 		;
 
 decl    : tipo
@@ -70,7 +90,8 @@ tipo    : 'numero' { _type = IsiVariable.NUMBER;}
         | 'texto'  { _type = IsiVariable.TEXT;}
         ;
 		
-bloco	: (cmd)+
+bloco	: {curThread = new ArrayList<AbstractCommands>(); stack.push(curThread)}
+          (cmd)+
 		;
 		
 
@@ -91,7 +112,12 @@ cmdleitura	: 'leia'
 
                }
                FP
-               SC { initializeVar(_readID); }
+               SC {
+                    initializeVar(_readID);
+                    IsiVariable var = symbolTable.get(_readID);
+                    CommandRead cmd = new CommandRead(_readID, var);
+                    stack.peek().add(cmd);
+               }
 			;
 			
 cmdescrita	: 'escreva'
@@ -117,7 +143,11 @@ cmdattrib	:  ID {
                }
                ATTR { _exprContent = ""; }
                expr
-               SC { initializeVar(_exprID); }
+               SC {
+                     initializeVar(_exprID);
+                     CommandAttribution cmd = new CommandAttribution(_exprID, _exprContent);
+                     stack.peek().add(cmd);
+               }
 			;
 
 cmdif  :  'se' AP

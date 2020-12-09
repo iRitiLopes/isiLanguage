@@ -1,5 +1,6 @@
 package br.com.isilanguage.datastructures;
 
+        import java.util.ArrayList;
         import java.util.HashMap;
 
 public class IsiSymbolTable {
@@ -25,5 +26,10 @@ public class IsiSymbolTable {
     public void replace(String id, IsiVariable newSymbol){
         map.replace(id, newSymbol);
     }
+
+    public ArrayList<IsiVariable> getAll(){
+        return new ArrayList<IsiVariable>(map.values());
+    }
+
 
 }

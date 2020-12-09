@@ -16,6 +16,7 @@ public abstract class IsiSymbol {
         this.name = name;
     }
 
+    public abstract String generateJavaCode();
     @Override
     public String toString() {
         return "IsiSymbol{" +

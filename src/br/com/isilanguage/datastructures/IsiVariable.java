@@ -41,6 +41,19 @@ public class IsiVariable extends IsiSymbol {
     }
 
     @Override
+    public String generateJavaCode() {
+        String str;
+        if (type == NUMBER) {
+            str = "double ";
+        }
+        else {
+            str = "String ";
+        }
+        return str + " "+super.name+";";
+    }
+
+
+    @Override
     public String toString() {
         return "IsiVariable{" +
                 "type=" + type +
