@@ -58,7 +58,7 @@ grammar IsiLang;
 
 prog	: 'programa'  decl* bloco  'fimprog' SC
           {
-              program.setVariable(symbolTable);
+              program.setVarTable(symbolTable);
               program.setCommands(stack.pop());
           }
 		;
@@ -90,7 +90,10 @@ tipo    : 'numero' { _type = IsiVariable.NUMBER;}
         | 'texto'  { _type = IsiVariable.TEXT;}
         ;
 		
-bloco	: {curThread = new ArrayList<AbstractCommands>(); stack.push(curThread)}
+bloco	: {
+            curThread = new ArrayList<AbstractCommand>();
+            stack.push(curThread);
+           }
           (cmd)+
 		;
 		

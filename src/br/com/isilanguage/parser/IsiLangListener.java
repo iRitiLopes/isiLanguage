@@ -5,7 +5,15 @@ package br.com.isilanguage.parser;
     import br.com.isilanguage.datastructures.IsiSymbolTable;
     import br.com.isilanguage.datastructures.IsiVariable;
     import br.com.isilanguage.datastructures.IsiSymbol;
+
+    import br.com.isilanguage.ast.IsiProgram;
+    import br.com.isilanguage.ast.AbstractCommand;
+
+    import br.com.isilanguage.ast.CommandAttribution;
+    import br.com.isilanguage.ast.CommandRead;
+
     import java.util.ArrayList;
+    import java.util.Stack;
 
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
