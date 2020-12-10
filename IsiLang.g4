@@ -218,7 +218,6 @@ termo		: ID {
                         throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, not a 'number' type");
                     }
                     if(isNumber(_exprID) && !isNumber(id)){
-                        System.out.println(_exprID + id + "meajuda");
                         throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, not a 'texto' type");
                     }
                     _exprContent += _input.LT(-1).getText();

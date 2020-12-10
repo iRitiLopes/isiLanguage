@@ -19,8 +19,6 @@ programa
   a = 1;
   b = 1.43;
 
-  d = "aaa";
-  a = d;
-  d = a;
+  d = "Hello World";
 
 fimprog;

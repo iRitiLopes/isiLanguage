@@ -11,9 +11,11 @@ This is a repository for the Project of UFABC Compilers discipline
 - ~~Aceita números decimais~~
 - ~~Verificar se variável foi declarada~~
 - ~~Verificar se variável declarada foi ou não usada~~
-- Qual linguagem destino? (C/Java/Python)
+- Qual linguagem destino? Java
 - **ITENS OPCIONAIS (Se houver)**
 - **Extras**
+  - ~~Verificando tipos compativeis de variaveis na atribuição.~~
+  - ~~Aceitando Strings literais. Exemplo: "Hello World".~~
 
 
 # Vídeo de apresentação
