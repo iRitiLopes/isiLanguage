@@ -26,10 +26,8 @@ public class IsiProgram {
         }
         str.append("  }");
         str.append("}");
-        System.out.println("escrevendo");
 
         try {
-            System.out.println("escrevendo");
             FileWriter fr = new FileWriter(new File("MainClass.java"));
             fr.write(str.toString());
             fr.close();
