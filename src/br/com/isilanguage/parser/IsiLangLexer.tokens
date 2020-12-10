@@ -19,8 +19,7 @@ ATTR=18
 ID=19
 NUMBER=20
 STR=21
-QUOTE=22
-WS=23
+WS=22
 'programa'=1
 'fimprog'=2
 'numero'=3
@@ -37,4 +36,3 @@ WS=23
 ')'=15
 ';'=16
 '='=18
-'"'=22

@@ -34,7 +34,7 @@ public class IsiLangParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		ACH=10, FCH=11, OPREL=12, VIR=13, AP=14, FP=15, SC=16, OP=17, ATTR=18, 
-		ID=19, NUMBER=20, STR=21, QUOTE=22, WS=23;
+		ID=19, NUMBER=20, STR=21, WS=22;
 	public static final int
 		RULE_prog = 0, RULE_decl = 1, RULE_tipo = 2, RULE_bloco = 3, RULE_cmd = 4, 
 		RULE_cmdleitura = 5, RULE_cmdescrita = 6, RULE_cmdattrib = 7, RULE_cmdif = 8, 
@@ -47,12 +47,12 @@ public class IsiLangParser extends Parser {
 	private static final String[] _LITERAL_NAMES = {
 		null, "'programa'", "'fimprog'", "'numero'", "'texto'", "'leia'", "'escreva'", 
 		"'se'", "'senao'", "'while'", "'{'", "'}'", null, "','", "'('", "')'", 
-		"';'", null, "'='", null, null, null, "'\"'"
+		"';'", null, "'='"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, "ACH", "FCH", 
 		"OPREL", "VIR", "AP", "FP", "SC", "OP", "ATTR", "ID", "NUMBER", "STR", 
-		"QUOTE", "WS"
+		"WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -1029,7 +1029,6 @@ public class IsiLangParser extends Parser {
 				                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, not a 'number' type");
 				                    }
 				                    if(isNumber(_exprID) && !isNumber(id)){
-				                        System.out.println(_exprID + id + "meajuda");
 				                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, not a 'texto' type");
 				                    }
 				                    _exprContent += _input.LT(-1).getText();
@@ -1079,7 +1078,7 @@ public class IsiLangParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\31\u00a0\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\30\u00a0\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\3\2\3\2\7\2\35\n\2\f\2\16\2 \13\2\3\2\3\2\3\2\3"+
 		"\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3-\n\3\f\3\16\3\60\13\3\3\3\3\3\3\4\3"+
