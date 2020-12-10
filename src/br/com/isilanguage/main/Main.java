@@ -34,6 +34,7 @@ public class Main {
 			parser.removeErrorListeners();
 			parser.addErrorListener(DescriptiveErrorListener.INSTANCE);
 			parser.prog();
+			parser.generateJavaCode();
 
 			System.out.println("Compilation Successful");
 			

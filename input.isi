@@ -3,6 +3,7 @@ programa
   texto  c, d;
 
   leia(b);
+  leia(c);
 
   a = 1 + 2 * 3 / b ;
   se(a > 2){
@@ -17,5 +18,9 @@ programa
 
   a = 1;
   b = 1.43;
+
+  d = "aaa";
+  a = d;
+  d = a;
 
 fimprog;

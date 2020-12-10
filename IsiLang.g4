@@ -50,6 +50,16 @@ grammar IsiLang;
         return false;
     }
 
+    public boolean isNumber(String id){
+        if(isIDDeclared(id)){
+            IsiVariable var = symbolTable.get(id);
+            if(var.getType() == IsiVariable.NUMBER)
+                return true;
+            return false;
+        }
+        return false;
+    }
+
     public void generateJavaCode(){
         program.generateTarget();
     }
@@ -204,10 +214,28 @@ termo		: ID {
                     if(!isVarInitialized(id)){
                         throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + id  + "` not initialized");
                     }
+                    if(!isNumber(_exprID) && isNumber(id)){
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, not a 'number' type");
+                    }
+                    if(isNumber(_exprID) && !isNumber(id)){
+                        System.out.println(_exprID + id + "meajuda");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, not a 'texto' type");
+                    }
                     _exprContent += _input.LT(-1).getText();
 
               }
-            | NUMBER  { _exprContent += _input.LT(-1).getText(); }
+            | NUMBER  {
+                    if(!isNumber(_exprID)){
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, not a 'number' type");
+                    }
+                    _exprContent += _input.LT(-1).getText();
+            }
+            | STR {
+                    if(isNumber(_exprID)){
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, not a 'texto' type");
+                    }
+                    _exprContent += _input.LT(-1).getText();
+            }
 			;
 
 ACH : '{'
@@ -240,5 +268,11 @@ ID	: [a-z] ([a-z] | [A-Z] | [0-9])*
 	
 NUMBER	: [0-9]+ ('.' [0-9]+)?
 		;
+
+STR     : QUOTE ([a-z] | [A-Z] | [0-9])* QUOTE
+        ;
+
+QUOTE   : '"'
+        ;
 		
 WS	: (' ' | '\t' | '\n' | '\r') -> skip;
