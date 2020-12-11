@@ -9,9 +9,9 @@ String  d;
 double  f;
 b= _key.nextDouble();
 c= _key.next();
-f= _key.nextDouble();
 a = 1+2*3/b;
-b = ((1+(9+4))+2)+(3+(4+5))*(123+2);
+b = ((1+(9+4))+2)+(a+(4+5))*(123+2);
+f = b/a;
 if(a>2&&a==2){
 System.out.println(a);}else {
 System.out.println(b);}
