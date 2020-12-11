@@ -28,22 +28,33 @@ TODO
 ## Exemplo da linguagem
 ```
 programa
-  numero a, b;
+  numero a, b, f;
   texto  c, d;
 
-  leia(a);
   leia(b);
-  
+  leia(c);
+
   a = 1 + 2 * 3 / b ;
-  
-  escreva(a);
-  escreva(b);
+  b = 1 + 2 + 3;
+  se(a > 2 && a == 2){
+    escreva(a);
+  }senao{
+    escreva(b);
+  }
+
+  se( b > a){
+    escreva(b);
+  }
+
+
+  enquanto(a > 2 && a < 5 || a == 5){
+    escreva(a);
+  }
 
   a = 1;
   b = 1.43;
 
-  asd = 5.123;
-
+  d = "Hello World";
 
 fimprog;
 ```
