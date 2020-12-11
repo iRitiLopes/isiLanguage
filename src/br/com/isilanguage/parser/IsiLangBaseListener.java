@@ -214,18 +214,6 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExprChild(IsiLangParser.ExprChildContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitExprChild(IsiLangParser.ExprChildContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExprTermo(IsiLangParser.ExprTermoContext ctx) { }
 	/**
 	 * {@inheritDoc}

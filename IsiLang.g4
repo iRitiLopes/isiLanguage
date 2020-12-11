@@ -285,24 +285,7 @@ boolTermo   : (
             ;
 
 
-expr        : exprChild
-              |
-              (
-                (
-                    exprChild
-                    OP { _exprContent += _input.LT(-1).getText(); }
-                )?
-                AP { _exprContent += _input.LT(-1).getText(); }
-                expr
-                FP { _exprContent += _input.LT(-1).getText(); }
-                (
-                    OP { _exprContent += _input.LT(-1).getText(); }
-                    expr
-                )*
-              )*
-            ;
-
-exprChild   :  exprTermo
+expr        :  exprTermo
                (
                  OP { _exprContent += _input.LT(-1).getText(); }
                  exprTermo
@@ -338,6 +321,10 @@ exprTermo		: ID {
                     }
                     _exprContent += _input.LT(-1).getText();
             }
+            |
+                AP { _exprContent += _input.LT(-1).getText(); }
+                expr
+                FP { _exprContent += _input.LT(-1).getText(); }
 			;
 
 ACH : '{'
