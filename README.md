@@ -19,6 +19,8 @@ This is a repository for the Project of UFABC Compilers discipline
   - ~~Operações booleanas podem aceitar os IDs em ambas posições~~
   - ~~Operações booleanas apenas fazem comparacoes do tipo numero~~
   - ~~Operações booleanas aceitam encadeamento com operadores "&&" (and) e "||" (or)~~
+  - ~~Adicionado reconhecimento de parenteses em expressoes algebricas e booleanas para definir precedencia forçada~~
+  - ~~Adicionado reconhecimento do operador de negacao numa expressao booleana~~
 
 
 # Vídeo de apresentação
@@ -35,19 +37,19 @@ programa
   leia(c);
 
   a = 1 + 2 * 3 / b ;
-  b = 1 + 2 + 3;
+  b = ((1 + (9 + 4)) + 2) + (3 + (4 + 5)) * (123 + 2);
   se(a > 2 && a == 2){
     escreva(a);
   }senao{
     escreva(b);
   }
 
-  se( b > a){
+  se(b > a){
     escreva(b);
   }
 
 
-  enquanto(a > 2 && a < 5 || a == 5){
+  enquanto(!(a > 2 && a < 5) || a == 5){
     escreva(a);
   }
 

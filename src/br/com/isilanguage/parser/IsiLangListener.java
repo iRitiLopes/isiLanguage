@@ -136,6 +136,26 @@ public interface IsiLangListener extends ParseTreeListener {
 	 */
 	void exitBoolExpr(IsiLangParser.BoolExprContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#boolExprChild}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExprChild(IsiLangParser.BoolExprChildContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#boolExprChild}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExprChild(IsiLangParser.BoolExprChildContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#boolExprChildChild}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExprChildChild(IsiLangParser.BoolExprChildChildContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#boolExprChildChild}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExprChildChild(IsiLangParser.BoolExprChildChildContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#boolTermo}.
 	 * @param ctx the parse tree
 	 */
@@ -155,6 +175,16 @@ public interface IsiLangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(IsiLangParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#exprChild}.
+	 * @param ctx the parse tree
+	 */
+	void enterExprChild(IsiLangParser.ExprChildContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#exprChild}.
+	 * @param ctx the parse tree
+	 */
+	void exitExprChild(IsiLangParser.ExprChildContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#exprTermo}.
 	 * @param ctx the parse tree

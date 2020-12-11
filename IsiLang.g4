@@ -234,8 +234,27 @@ cmdwhile    : 'enquanto' AP {
                         stack.peek().add(cmd);
               }
             ;
+boolExpr      : { _exprDecision = ""; } boolExprChild ;
+boolExprChild      : boolExprChildChild
+              |
+              (
+                (
+                    boolExprChildChild
+                    ('&&'| '||') { _exprDecision += _input.LT(-1).getText();}
+                )?
+                NOT? { _exprDecision += _input.LT(-1).getText();}
+                AP { _exprDecision += _input.LT(-1).getText();}
+                boolExprChild
+                FP { _exprDecision += _input.LT(-1).getText();}
+                (
+                    ('&&'| '||') { _exprDecision += _input.LT(-1).getText();}
+                    boolExprChild
+                )*
+              )*
+            ;
 
-boolExpr    : boolTermo { _exprDecision = _input.LT(-1).getText(); }
+
+boolExprChildChild    : boolTermo { _exprDecision += _input.LT(-1).getText(); }
               OPREL     { _exprDecision += _input.LT(-1).getText(); }
               boolTermo { _exprDecision += _input.LT(-1).getText(); }
               (
@@ -266,7 +285,24 @@ boolTermo   : (
             ;
 
 
-expr		:  exprTermo
+expr        : exprChild
+              |
+              (
+                (
+                    exprChild
+                    OP { _exprContent += _input.LT(-1).getText(); }
+                )?
+                AP { _exprContent += _input.LT(-1).getText(); }
+                expr
+                FP { _exprContent += _input.LT(-1).getText(); }
+                (
+                    OP { _exprContent += _input.LT(-1).getText(); }
+                    expr
+                )*
+              )*
+            ;
+
+exprChild   :  exprTermo
                (
                  OP { _exprContent += _input.LT(-1).getText(); }
                  exprTermo
@@ -309,6 +345,9 @@ ACH : '{'
 FCH : '}'
     ;
 OPREL : '>' | '<' | '>=' | '<=' | '==' | '!='
+      ;
+
+NOT   : '!'
       ;
 
 VIR : ','

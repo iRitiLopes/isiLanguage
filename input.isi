@@ -6,19 +6,19 @@ programa
   leia(c);
 
   a = 1 + 2 * 3 / b ;
-  b = 1 + 2 + 3;
+  b = ((1 + (9 + 4)) + 2) + (3 + (4 + 5)) * (123 + 2);
   se(a > 2 && a == 2){
     escreva(a);
   }senao{
     escreva(b);
   }
 
-  se( b > a){
+  se(b > a){
     escreva(b);
   }
 
 
-  enquanto(a > 2 && a < 5 || a == 5){
+  enquanto(!(a > 2 && a < 5) || a == 5){
     escreva(a);
   }
 
