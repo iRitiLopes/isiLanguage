@@ -11,6 +11,9 @@ package br.com.isilanguage.parser;
 
     import br.com.isilanguage.ast.CommandAttribution;
     import br.com.isilanguage.ast.CommandRead;
+    import br.com.isilanguage.ast.CommandWrite;
+    import br.com.isilanguage.ast.CommandIf;
+    import br.com.isilanguage.ast.CommandWhile;
 
     import java.util.ArrayList;
     import java.util.Stack;
@@ -123,6 +126,26 @@ public interface IsiLangListener extends ParseTreeListener {
 	 */
 	void exitCmdwhile(IsiLangParser.CmdwhileContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#boolExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExpr(IsiLangParser.BoolExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#boolExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExpr(IsiLangParser.BoolExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link IsiLangParser#boolTermo}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolTermo(IsiLangParser.BoolTermoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link IsiLangParser#boolTermo}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolTermo(IsiLangParser.BoolTermoContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link IsiLangParser#expr}.
 	 * @param ctx the parse tree
 	 */
@@ -133,13 +156,13 @@ public interface IsiLangListener extends ParseTreeListener {
 	 */
 	void exitExpr(IsiLangParser.ExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link IsiLangParser#termo}.
+	 * Enter a parse tree produced by {@link IsiLangParser#exprTermo}.
 	 * @param ctx the parse tree
 	 */
-	void enterTermo(IsiLangParser.TermoContext ctx);
+	void enterExprTermo(IsiLangParser.ExprTermoContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link IsiLangParser#termo}.
+	 * Exit a parse tree produced by {@link IsiLangParser#exprTermo}.
 	 * @param ctx the parse tree
 	 */
-	void exitTermo(IsiLangParser.TermoContext ctx);
+	void exitExprTermo(IsiLangParser.ExprTermoContext ctx);
 }

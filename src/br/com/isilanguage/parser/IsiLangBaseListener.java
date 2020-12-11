@@ -11,6 +11,9 @@ package br.com.isilanguage.parser;
 
     import br.com.isilanguage.ast.CommandAttribution;
     import br.com.isilanguage.ast.CommandRead;
+    import br.com.isilanguage.ast.CommandWrite;
+    import br.com.isilanguage.ast.CommandIf;
+    import br.com.isilanguage.ast.CommandWhile;
 
     import java.util.ArrayList;
     import java.util.Stack;
@@ -151,6 +154,30 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBoolExpr(IsiLangParser.BoolExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolExpr(IsiLangParser.BoolExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolTermo(IsiLangParser.BoolTermoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolTermo(IsiLangParser.BoolTermoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterExpr(IsiLangParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -163,13 +190,13 @@ public class IsiLangBaseListener implements IsiLangListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterTermo(IsiLangParser.TermoContext ctx) { }
+	@Override public void enterExprTermo(IsiLangParser.ExprTermoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitTermo(IsiLangParser.TermoContext ctx) { }
+	@Override public void exitExprTermo(IsiLangParser.ExprTermoContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

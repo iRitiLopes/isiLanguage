@@ -11,6 +11,9 @@ grammar IsiLang;
 
     import br.com.isilanguage.ast.CommandAttribution;
     import br.com.isilanguage.ast.CommandRead;
+    import br.com.isilanguage.ast.CommandWrite;
+    import br.com.isilanguage.ast.CommandIf;
+    import br.com.isilanguage.ast.CommandWhile;
 
     import java.util.ArrayList;
     import java.util.Stack;
@@ -22,14 +25,20 @@ grammar IsiLang;
     private IsiSymbolTable symbolTable = new IsiSymbolTable();
     private IsiSymbol symbol;
     private IsiVariable variable;
+    private String _exprContent;
     private String _readID;
     private String _writeID;
-    private String _exprContent;
+
+    private String _exprDecision;
+
     private String _exprID;
 
     private IsiProgram program = new IsiProgram();
     private ArrayList<AbstractCommand> curThread;
     private Stack<ArrayList<AbstractCommand>> stack = new Stack<ArrayList<AbstractCommand>>();
+
+    private ArrayList<AbstractCommand> listTrue;
+    private ArrayList<AbstractCommand> listFalse;
 
     public boolean isIDDeclared(String id){
         return symbolTable.exists(id);
@@ -49,6 +58,12 @@ grammar IsiLang;
         }
         return false;
     }
+
+    public void showCommands(){
+    		for (AbstractCommand c: program.getCommands()){
+    			System.out.println(c);
+    		}
+    	}
 
     public boolean isNumber(String id){
         if(isIDDeclared(id)){
@@ -80,6 +95,8 @@ decl    : tipo
                 variable = new IsiVariable(_varName, _type, _varValue);
                 if(!isIDDeclared(_varName)){
                     symbolTable.add(variable);
+                }else{
+                    throw new IsiSemanticException("Symbol "+_varName+" already declared");
                 }
              }
           (
@@ -90,6 +107,8 @@ decl    : tipo
                variable = new IsiVariable(_varName, _type, _varValue);
                if(!isIDDeclared(_varName)){
                    symbolTable.add(variable);
+               }else{
+                   throw new IsiSemanticException("Symbol "+_varName+" already declared");
                }
             }
           )*
@@ -141,13 +160,16 @@ cmdescrita	: 'escreva'
                         throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _writeID  + "` NOT declared");
                     }
                     if(!isVarInitialized(_writeID)){
-                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _writeID  + "` not initialized");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _writeID  + "` NOT initialized");
                     }
                   }
                FP
-               SC
+               SC {
+                    CommandWrite cmd = new CommandWrite(_writeID);
+                    stack.peek().add(cmd);
+               }
 			;
-			
+
 cmdattrib	:  ID {
                     _exprID = _input.LT(-1).getText();
                     if(!isIDDeclared(_exprID)){
@@ -163,75 +185,120 @@ cmdattrib	:  ID {
                }
 			;
 
-cmdif  :  'se' AP
+cmdif  :  'se' AP {
+                    ArrayList<AbstractCommand> trueThread = new ArrayList<AbstractCommand>();
+                    ArrayList<AbstractCommand> falseThread = new ArrayList<AbstractCommand>();
+                    ArrayList<AbstractCommand> listTrue = new ArrayList<AbstractCommand>();
+                    ArrayList<AbstractCommand> listFalse = new ArrayList<AbstractCommand>();
+               }
+               boolExpr
+               FP
+               ACH {
+                    trueThread = new ArrayList<AbstractCommand>();
+                    stack.push(trueThread);
+               }
+               (cmd)+
+               FCH {
+
+                    listTrue = stack.pop();
+               }
+               ('senao'
+                   ACH {
+                            falseThread = new ArrayList<AbstractCommand>();
+                            stack.push(falseThread);
+                   }
+                   (cmd+)
+                   FCH {
+                            listFalse = stack.pop();
+                   }
+               )? {
+                    CommandIf cmd = new CommandIf(_exprDecision, listTrue, listFalse);
+                    stack.peek().add(cmd);
+               }
+      ;
+
+cmdwhile    : 'enquanto' AP {
+                ArrayList<AbstractCommand> whileThread = new ArrayList<AbstractCommand>();
+                ArrayList<AbstractCommand> whileList = new ArrayList<AbstractCommand>();
+              }
+              boolExpr
+              FP
+              ACH   {
+                        whileThread = new ArrayList<AbstractCommand>();
+                        stack.push(whileThread);
+              }
+              (cmd)+
+              FCH   {
+                        whileList = stack.pop();
+                        CommandWhile cmd = new CommandWhile(_exprDecision, whileList);
+                        stack.peek().add(cmd);
+              }
+            ;
+
+boolExpr    : boolTermo { _exprDecision = _input.LT(-1).getText(); }
+              OPREL     { _exprDecision += _input.LT(-1).getText(); }
+              boolTermo { _exprDecision += _input.LT(-1).getText(); }
+              (
+                ('&&'| '||') { _exprDecision += _input.LT(-1).getText(); }
+                boolTermo { _exprDecision += _input.LT(-1).getText(); }
+                OPREL { _exprDecision += _input.LT(-1).getText(); }
+                boolTermo { _exprDecision += _input.LT(-1).getText(); }
+              )*
+            ;
+
+
+boolTermo   : (
                ID {
+
                     if(!isIDDeclared(_input.LT(-1).getText())){
                         throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _input.LT(-1).getText()  + "` NOT declared");
                     }
                     if(!isVarInitialized(_input.LT(-1).getText())){
-                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _input.LT(-1).getText()  + "` not initialized");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _input.LT(-1).getText()  + "` NOT initialized");
+                    }
+                    if(!isNumber(_input.LT(-1).getText())){
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Comparsion operations are expectating a 'number' type, NOT a 'text' type");
                     }
                }
-               OPREL {  }
-               (
-                   ID {
-                        if(!isIDDeclared(_input.LT(-1).getText())){
-                            throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _input.LT(-1).getText()  + "` NOT declared");
-                        }
-                        if(!isVarInitialized(_input.LT(-1).getText())){
-                            throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _input.LT(-1).getText()  + "` not initialized");
-                        }
-                   }
-                   |
-                   NUMBER
-               ) { }
-               FP
-               ACH { }
-               (cmd)+
-               FCH { }
-               ('senao'
-                   ACH { }
-                   (cmd+)
-                   FCH { }
-               )?
-      ;
-
-cmdwhile    : 'while' AP termo OPREL termo FP ACH (cmd)+ FCH
+               |
+               NUMBER
+            )
             ;
-			
-expr		:  termo
+
+
+expr		:  exprTermo
                (
                  OP { _exprContent += _input.LT(-1).getText(); }
-                 termo
+                 exprTermo
                )*
 			;
 			
-termo		: ID {
+exprTermo		: ID {
                     String id = _input.LT(-1).getText();
                     if(!isIDDeclared(id)){
                         throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + id  + "` NOT declared");
                     }
                     if(!isVarInitialized(id)){
-                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + id  + "` not initialized");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + id  + "` NOT initialized");
                     }
                     if(!isNumber(_exprID) && isNumber(id)){
-                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, not a 'number' type");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, NOT a 'number' type");
                     }
                     if(isNumber(_exprID) && !isNumber(id)){
-                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, not a 'texto' type");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, NOT a 'texto' type");
                     }
                     _exprContent += _input.LT(-1).getText();
 
               }
             | NUMBER  {
                     if(!isNumber(_exprID)){
-                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, not a 'number' type");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'texto' type, NOT a 'number' type");
                     }
                     _exprContent += _input.LT(-1).getText();
             }
             | STR {
                     if(isNumber(_exprID)){
-                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, not a 'texto' type");
+                        throw new IsiSemanticException(getCurrentToken().getLine(), getCurrentToken().getCharPositionInLine(), "Symbol `" + _exprID  + "` expectating a 'number' type, NOT a 'texto' type");
                     }
                     _exprContent += _input.LT(-1).getText();
             }

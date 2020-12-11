@@ -4,10 +4,10 @@ This is a repository for the Project of UFABC Compilers discipline
 
 # Milestones
 - ~~Possui 2 tipos de variáveis~~
-- Possui a estrutura If.. else
-- Estrutura de Repetição
-- Verificar se Variável foi atribuída ou não
-- Possui operações de Entrada e Saída
+- ~~Possui a estrutura If.. else~~
+- ~~Estrutura de Repetição~~
+- ~~Verificar se Variável foi atribuída ou não~~
+- ~~Possui operações de Entrada e Saída~~
 - ~~Aceita números decimais~~
 - ~~Verificar se variável foi declarada~~
 - ~~Verificar se variável declarada foi ou não usada~~
@@ -16,6 +16,9 @@ This is a repository for the Project of UFABC Compilers discipline
 - **Extras**
   - ~~Verificando tipos compativeis de variaveis na atribuição.~~
   - ~~Aceitando Strings literais. Exemplo: "Hello World".~~
+  - ~~Operações booleanas podem aceitar os IDs em ambas posições~~
+  - ~~Operações booleanas apenas fazem comparacoes do tipo numero~~
+  - ~~Operações booleanas aceitam encadeamento com operadores "&&" (and) e "||" (or)~~
 
 
 # Vídeo de apresentação

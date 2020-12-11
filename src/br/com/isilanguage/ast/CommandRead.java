@@ -13,7 +13,7 @@ public class CommandRead extends AbstractCommand {
     }
     @Override
     public String generateJavaCode() {
-        return id +"= _key." + (var.getType()==IsiVariable.NUMBER? "nextDouble();": "nextLine();");
+        return id +"= _key." + (var.getType()==IsiVariable.NUMBER? "nextDouble();": "next();");
     }
     @Override
     public String toString() {

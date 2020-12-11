@@ -19,6 +19,9 @@ public class IsiProgram {
         str.append("  public static void main(String args[]){\n ");
         str.append("      Scanner _key = new Scanner(System.in);\n");
         for (IsiVariable symbol: varTable.getAll()) {
+            if(!symbol.isInitialized()){
+                System.err.println("WARN - Variable " + symbol.getName() + " not initialized!");
+            }
             str.append(symbol.generateJavaCode()).append("\n");
         }
         for (AbstractCommand command: commands) {

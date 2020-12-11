@@ -6,13 +6,19 @@ programa
   leia(c);
 
   a = 1 + 2 * 3 / b ;
-  se(a > 2){
+  b = 1 + 2 + 3;
+  se(a > 2 && a == 2){
     escreva(a);
   }senao{
     escreva(b);
   }
 
-  while(a > 2){
+  se( b > a){
+    escreva(b);
+  }
+
+
+  enquanto(a > 2 && a < 5 || a == 5){
     escreva(a);
   }
 
