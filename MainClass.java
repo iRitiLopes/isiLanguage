@@ -9,6 +9,7 @@ String  d;
 double  f;
 b= _key.nextDouble();
 c= _key.next();
+f= _key.nextDouble();
 a = 1+2*3/b;
 b = ((1+(9+4))+2)+(3+(4+5))*(123+2);
 if(a>2&&a==2){
