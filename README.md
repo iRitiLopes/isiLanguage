@@ -14,6 +14,7 @@ This is a repository for the Project of UFABC Compilers discipline
 - Qual linguagem destino? Java
 - **ITENS OPCIONAIS (Se houver)**
 - **Extras**
+  - ~~Adicionado Listener ao parser e ao Lexer para que os erros mostrem a linha e a coluna que os erros aconteceram~~
   - ~~Verificando tipos compativeis de variaveis na atribuição.~~
   - ~~Aceitando Strings literais. Exemplo: "Hello World".~~
   - ~~Operações booleanas podem aceitar os IDs em ambas posições~~
