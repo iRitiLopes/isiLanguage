@@ -12,9 +12,10 @@ c= _key.next();
 a = 1+2*3/b;
 b = ((1+(9+4))+2)+(a+(4+5))*(123+2);
 f = b/a;
-if(a>2){
-System.out.println(a);if(a>2){
-b= _key.nextDouble();}}else {
+if(a<5){
+System.out.println(a);if(a<5){
+b= _key.nextDouble();if(a<5){
+a= _key.nextDouble();}}}else {
 System.out.println(b);}
 
 if(a==b){

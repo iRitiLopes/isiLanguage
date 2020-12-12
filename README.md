@@ -42,17 +42,31 @@ programa
   f = b / a;
   se(a > 2 && a == 2){
     escreva(a);
+    se(a > 2){
+        leia(b);
+        se(a < 5){
+            leia(a);
+        }
+    }
   }senao{
     escreva(b);
   }
 
   se(b > a){
     escreva(b);
+    enquanto(a == b){
+        escreva(a);
+    }
   }
 
 
   enquanto(!(a > 2 && a < 5) || a == 5){
     escreva(a);
+    se(a < b){
+        escreva(b);
+    }senao{
+        escreva(a);
+    }
   }
 
   a = 1;

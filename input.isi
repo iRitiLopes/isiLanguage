@@ -12,6 +12,9 @@ programa
     escreva(a);
     se(a > 2){
         leia(b);
+        se(a < 5){
+            leia(a);
+        }
     }
   }senao{
     escreva(b);
