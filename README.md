@@ -54,9 +54,6 @@ programa
 
   se(b > a){
     escreva(b);
-    enquanto(a == b){
-        escreva(a);
-    }
   }
 
 
@@ -79,7 +76,6 @@ fimprog;
 
 Output
 ```java
-
 import java.util.Scanner;
 
 public class MainClass {
@@ -95,9 +91,9 @@ public class MainClass {
         a = 1 + 2 * 3 / b;
         b = ((1 + (9 + 4)) + 2) + (a + (4 + 5)) * (123 + 2);
         f = b / a;
-        if (a < 5) {
+        if (a > 2 && a == 2) {
             System.out.println(a);
-            if (a < 5) {
+            if (a > 2) {
                 b = _key.nextDouble();
                 if (a < 5) {
                     a = _key.nextDouble();
@@ -107,13 +103,10 @@ public class MainClass {
             System.out.println(b);
         }
 
-        if (a == b) {
+        if (b > a) {
             System.out.println(b);
-            while (a == b) {
-                System.out.println(a);
-            }
         }
-        while (a < b) {
+        while (!(a > 2 && a < 5) || a == 5) {
             System.out.println(a);
             if (a < b) {
                 System.out.println(b);
