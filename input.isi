@@ -1,42 +1,43 @@
 programa
-  numero a, b, f;
-  texto  c, d;
+  declare numero a, b, f.
+  declare texto  c, d.
 
-  leia(b);
-  leia(c);
+  leia(b).
+  leia(c).
 
-  a = 1 + 2 * 3 / b ;
-  b = ((1 + (9 + 4)) + 2) + (a + (4 + 5)) * (123 + 2);
-  f = b / a;
+  a := 1 + 2 * 3 / b .
+  b := ((1 + (9 + 4)) + 2) + (a + (4 + 5)) * (123 + 2).
+  f := b / a.
   se(a > 2 && a == 2){
-    escreva(a);
+    escreva(a).
     se(a > 2){
-        leia(b);
+        leia(b).
         se(a < 5){
-            leia(a);
+            leia(a).
         }
     }
   }senao{
-    escreva(b);
+    escreva(b).
   }
 
   se(b > a){
-    escreva(b);
+    escreva(b).
   }
 
 
   enquanto(!(a > 2 && a < 5) || a == 5){
-    escreva(a);
+    escreva(a).
     se(a < b){
-        escreva(b);
+        escreva(b).
     }senao{
-        escreva(a);
+        escreva(a).
     }
   }
 
-  a = 1;
-  b = 1.43;
+  a := 1.
+  b := 1.43.
 
-  d = "Hello World";
+  d := "Hello World".
+  d := "IsiLanguage".
 
-fimprog;
+fimprog.

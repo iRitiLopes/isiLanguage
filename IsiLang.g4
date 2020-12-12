@@ -88,7 +88,7 @@ prog	: 'programa'  decl* bloco  'fimprog' SC
           }
 		;
 
-decl    : tipo
+decl    : 'declare' tipo
           ID {
                 _varName = _input.LT(-1).getText();
                 _varValue = null;
@@ -347,13 +347,13 @@ AP	: '('
 FP	: ')'
 	;
 	
-SC	: ';'
+SC	: '.'
 	;
 	
 OP	: '+' | '-' | '*' | '/'
 	;
 	
-ATTR : '='
+ATTR : ':='
 	 ;
 	 
 ID	: [a-z] ([a-z] | [A-Z] | [0-9])*
