@@ -8,9 +8,21 @@ public class CommandIf extends AbstractCommand {
     private ArrayList<AbstractCommand> listTrue;
     private ArrayList<AbstractCommand> listFalse;
 
+    public CommandIf(String condition){
+        this.condition = condition;
+    }
+
     public CommandIf(String condition, ArrayList<AbstractCommand> lt, ArrayList<AbstractCommand> lf){
         this.condition = condition;
         this.listTrue = lt;
+        this.listFalse = lf;
+    }
+
+    public void setListTrue(ArrayList<AbstractCommand> lt){
+        this.listTrue = lt;
+    }
+
+    public void setListFalse(ArrayList<AbstractCommand> lf){
         this.listFalse = lf;
     }
 

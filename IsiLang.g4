@@ -192,7 +192,7 @@ cmdif  :  'se' AP {
                     ArrayList<AbstractCommand> listFalse = new ArrayList<AbstractCommand>();
                }
                boolExpr
-               FP
+               FP { CommandIf cmd = new CommandIf(_exprDecision);}
                ACH {
                     trueThread = new ArrayList<AbstractCommand>();
                     stack.push(trueThread);
@@ -212,7 +212,8 @@ cmdif  :  'se' AP {
                             listFalse = stack.pop();
                    }
                )? {
-                    CommandIf cmd = new CommandIf(_exprDecision, listTrue, listFalse);
+                    cmd.setListTrue(listTrue);
+                    cmd.setListFalse(listFalse);
                     stack.peek().add(cmd);
                }
       ;
@@ -222,7 +223,7 @@ cmdwhile    : 'enquanto' AP {
                 ArrayList<AbstractCommand> whileList = new ArrayList<AbstractCommand>();
               }
               boolExpr
-              FP
+              FP { CommandWhile cmd = new CommandWhile(_exprDecision);}
               ACH   {
                         whileThread = new ArrayList<AbstractCommand>();
                         stack.push(whileThread);
@@ -230,11 +231,11 @@ cmdwhile    : 'enquanto' AP {
               (cmd)+
               FCH   {
                         whileList = stack.pop();
-                        CommandWhile cmd = new CommandWhile(_exprDecision, whileList);
+                        cmd.setWhileCommands(whileList);
                         stack.peek().add(cmd);
               }
             ;
-boolExpr      : { _exprDecision = ""; } boolExprChild ;
+boolExpr      : { _exprDecision = "";} boolExprChild ;
 boolExprChild      : boolExprChildChild
               |
               (

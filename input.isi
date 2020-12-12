@@ -22,9 +22,6 @@ programa
 
   se(b > a){
     escreva(b);
-    enquanto(a == b){
-        escreva(a);
-    }
   }
 
 

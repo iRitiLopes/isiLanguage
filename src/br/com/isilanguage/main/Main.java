@@ -41,6 +41,7 @@ public class Main {
 			
 		}
 		catch(Exception ex) {
+			ex.printStackTrace();
 			System.err.println("ERROR "+ex.getMessage());
             //System.err.println("At line:col " + parser.getCurrentToken().getLine() + ":" + parser.getCurrentToken().getCharPositionInLine());
 		}
