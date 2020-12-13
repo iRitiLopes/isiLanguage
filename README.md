@@ -25,7 +25,7 @@ This is a repository for the Project of UFABC Compilers discipline
 
 
 # Vídeo de apresentação
-TODO
+https://youtu.be/hzZ7pN8a5Yo
 
 
 ## Exemplo da linguagem
